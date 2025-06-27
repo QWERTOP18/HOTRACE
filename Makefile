@@ -1,11 +1,31 @@
-SRCS = $(shell find . -name "*.c")
-INCS = $(shell find . -name "*.h")
+# VARIANT: v0 or v1 (default: v0)
+VARIANT ?= v0
+
+ifeq ($(VARIANT),v1)
+VPATH = srcs/v1-map.c
+SRCS_VARIANT = $(shell find srcs/v1-map.c -name "*.c")
+INCS_VARIANT = $(shell find srcs/v1-map.c -name "*.h")
+else
+VPATH = srcs/v0-array
+SRCS_VARIANT = $(shell find srcs/v0-array -name "*.c")
+INCS_VARIANT = $(shell find srcs/v0-array -name "*.h")
+endif
+
+SRCS_COMMON = $(shell find srcs/parse -name "*.c") \
+	$(shell find srcs/_utils -name "*.c") \
+	srcs/main.c
+INCS_COMMON = $(shell find srcs/parse -name "*.h") \
+	$(shell find srcs/_utils -name "*.h") \
+	srcs/interface.h
+
+SRCS = $(SRCS_COMMON) $(SRCS_VARIANT)
+INCS = $(INCS_COMMON) $(INCS_VARIANT)
 
 CACHE = cache
 OBJS = $(patsubst %.c,$(CACHE)/%.o,$(SRCS))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Isrcs/_utils
 NAME = hotrace
 
 .PHONY: all clean fclean re run
