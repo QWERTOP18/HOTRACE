@@ -1,0 +1,13 @@
+.vscode
+.vscode/*
+.idea
+
+
+*.log
+*.tmp
+*.o
+*.pdf
+
+
+hotrace
+*cache*

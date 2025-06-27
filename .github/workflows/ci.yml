@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y valgrind
+          pip install norminette
+
+      - name: Norminette check
+        run: |
+          norminette --version
+          norminette srcs/
+
+      - name: Build
+        run: make
+
+      - name: Run tests
+        run: |
+          chmod +x test/simple-test.sh
+          ./test/simple-test.sh
+
+      - name: Valgrind check
+        run: valgrind --leak-check=full ./hotrace || true
