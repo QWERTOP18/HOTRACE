@@ -20,7 +20,7 @@ jobs:
       - name: Norminette check
         run: |
           norminette --version
-          norminette srcs/
+          norminette ./
 
       - name: Build
         run: make
