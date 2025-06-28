@@ -24,14 +24,19 @@
 
 make
 
-<< EOF > example.htr
+cat << EOF > example.htr
 keyword-1
 value-1
 keyword-2
 value-2
+
+keyword-1
+keyword-2
 EOF
 
 RESULT=$(./hotrace < example.htr)
+
+echo $RESULT
 
 if [ "$RESULT" != "value-1
 value-2" ]; then
