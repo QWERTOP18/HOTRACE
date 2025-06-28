@@ -33,7 +33,7 @@ keyword-3
 EOF
 
 
-RESULT=$(./hotrace < example.htr)
+RESULT=$(./hotrace < example.htr | tr -d '\0')
 EXPECTED="value-1
 value-2
 keyword-3

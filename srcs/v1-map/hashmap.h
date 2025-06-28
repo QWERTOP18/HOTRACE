@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   factory-map.c                                      :+:      :+:    :+:   */
+/*   hashmap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/28 00:00:01 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 14:56:38 by ymizukam         ###   ########.fr       */
+/*   Created: 2025/06/28 14:27:25 by ymizukam          #+#    #+#             */
+/*   Updated: 2025/06/28 14:50:26 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hashmap.h"
+#ifndef HASHMAP_H
+# define HASHMAP_H
 
+# include "utils.h"
 
-
-void	*new_ctx(void)
-{
-    
-}
-
-void	free_ctx(void *ctx)
-{
-    
-}
+#endif
