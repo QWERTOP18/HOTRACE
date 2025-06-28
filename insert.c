@@ -6,7 +6,7 @@
 /*   By: knishiok <knishiok@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:42:50 by knishiok          #+#    #+#             */
-/*   Updated: 2025/06/28 17:01:24 by knishiok         ###   ########.fr       */
+/*   Updated: 2025/06/28 17:02:25 by knishiok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,17 @@ t_AVLNode	*insert(t_AVLNode *node, const char *key, const char *value)
 	else if (cmp > 0)
 		node->right = insert(node->right, key, value);
 	else
+	{
+		free(node->value);
+		node->value = ft_strdup(value);
+		if (!node->value)
+		{
+			free(node->key);
+			free(node);
+			return (NULL);
+		}
 		return (node);
+	}
 	node->height = 1 + ft_max(get_height(node->left), get_height(node->right));
 	return (balancing_tree(node));
 }

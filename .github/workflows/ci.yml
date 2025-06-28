@@ -38,7 +38,7 @@ jobs:
 
       - name: Run Valgrind memory check
         run: |
-          echo -e "apple\nred\nbanana\nyellow\n\napple\nbanana\nnonexistent" > valgrind_input.txt
+          echo -e "apple\nblue\nbanana\nyellow\napple\nred\n\napple\nbanana\nnonexistent" > valgrind_input.txt
 
           valgrind \
             --leak-check=full \
