@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search-array.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 23:16:14 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 13:44:02 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/28 15:28:56 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	search(const char *key, void *ctx)
 		}
 		i++;
 	}
-	write(STDOUT_FILENO, key, ft_strlen(key));
+	write(STDOUT_FILENO, key, ft_strlen(key) - 1);
 	write(STDOUT_FILENO, ": Not found.\n", 14);
 	return (0);
 }

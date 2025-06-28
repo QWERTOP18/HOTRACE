@@ -3,8 +3,8 @@ VARIANT ?= v0
 
 ifeq ($(VARIANT),v1)
 VPATH = srcs/v1-map.c
-SRCS_VARIANT = $(shell find srcs/v1-map.c -name "*.c")
-INCS_VARIANT = $(shell find srcs/v1-map.c -name "*.h")
+SRCS_VARIANT = $(shell find srcs/v1-map -name "*.c")
+INCS_VARIANT = $(shell find srcs/v1-map -name "*.h")
 else
 VPATH = srcs/v0-array
 SRCS_VARIANT = $(shell find srcs/v0-array -name "*.c")

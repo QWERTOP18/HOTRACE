@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logger-array.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 13:27:31 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 13:52:06 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/28 18:25:50 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	debug_log(void *ctx)
 		return ;
 	array = (char ***)ctx;
 	i = 0;
-	while (i < 1024 && array[i][0])
+	while (i < 100000 && array[i][0])
 	{
 		write(STDOUT_FILENO, array[i][0], ft_strlen(array[i][0]));
 		write(STDOUT_FILENO, ": ", 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   factory-array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 00:01:13 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 13:53:20 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/28 18:25:50 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	*new_ctx(void)
 	char	***ctx;
 	int		i;
 
-	ctx = malloc(sizeof(char **) * 1024);
+	ctx = malloc(sizeof(char **) * 100000);
 	if (!ctx)
 		return (NULL);
 	i = 0;
-	while (i < 1024)
+	while (i < 100000)
 	{
 		ctx[i] = malloc(sizeof(char *) * 2);
 		if (!ctx[i])
@@ -50,7 +50,7 @@ void	free_ctx(void *ctx)
 		return ;
 	array = (char ***)ctx;
 	i = 0;
-	while (i < 1024)
+	while (i < 100000)
 	{
 		if (array[i])
 		{

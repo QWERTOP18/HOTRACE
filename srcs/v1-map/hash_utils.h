@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap.h                                          :+:      :+:    :+:   */
+/*   hash_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/28 14:27:25 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/06/28 18:51:24 by ymizukam         ###   ########.fr       */
+/*   Created: 2025/06/28 19:13:45 by ymizukam          #+#    #+#             */
+/*   Updated: 2025/06/28 19:13:47 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HASHMAP_H
-# define HASHMAP_H
+#ifndef HASH_UTILS_H
+# define HASH_UTILS_H
 
+# include "hashmap.h"
 # include "utils.h"
+# include <stddef.h>
 
-# define MAP_SIZE 100000
-
-typedef struct s_map_entry
-{
-	char				*key;
-	char				*value;
-	struct s_map_entry	*next;
-}						t_map_entry;
-
-typedef struct s_map
-{
-	t_map_entry			*entries[MAP_SIZE];
-	int					count;
-}						t_map;
+unsigned int	hash_func(const char *key);
+t_map_entry		*create_entry(const char *key, const char *value);
+void			free_entry_list(t_map_entry *entry);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store-array.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 00:01:21 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 13:41:47 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/28 18:25:50 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	store(const char *key, const char *value, void *ctx)
 	array[i][1] = ft_strdup(value);
 	if (!array[i][1])
 		return (-1);
-	if (++i >= 1024)
+	if (++i >= 100000)
 		return (-1);
 	return (0);
 }
