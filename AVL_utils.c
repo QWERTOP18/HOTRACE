@@ -6,7 +6,7 @@
 /*   By: knishiok <knishiok@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 14:36:02 by knishiok          #+#    #+#             */
-/*   Updated: 2025/06/28 15:13:56 by knishiok         ###   ########.fr       */
+/*   Updated: 2025/06/28 16:45:26 by knishiok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ void	ft_putstr_fd(const char *s, int fd)
 {
 	if (s)
 	{
-		write(fd, s, ft_strlen(s));
+		if (write(fd, s, ft_strlen(s)) < 0)
+		{
+			return ;
+		}
 	}
 }

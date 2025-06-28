@@ -6,7 +6,7 @@
 /*   By: knishiok <knishiok@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 14:38:06 by knishiok          #+#    #+#             */
-/*   Updated: 2025/06/28 15:54:49 by knishiok         ###   ########.fr       */
+/*   Updated: 2025/06/28 16:51:08 by knishiok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	destroy_tree(t_AVLNode *node)
 		destroy_tree(node->left);
 		destroy_tree(node->right);
 		free(node->key);
+		free(node->value);
 		free(node);
 	}
 }

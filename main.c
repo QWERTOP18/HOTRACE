@@ -6,7 +6,7 @@
 /*   By: knishiok <knishiok@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 14:00:28 by knishiok          #+#    #+#             */
-/*   Updated: 2025/06/28 15:39:40 by knishiok         ###   ########.fr       */
+/*   Updated: 2025/06/28 16:43:51 by knishiok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ static void	handle_query(t_AVLNode *node, const char *key)
 		ft_putstr_fd(found->value, STDOUT_FILENO);
 	else
 	{
-		write(STDOUT_FILENO, key, ft_strlen(key) - 1);
+		if (write(STDOUT_FILENO, key, ft_strlen(key) - 1) < 0)
+			return ;
 		ft_putstr_fd(": Not found.\n", STDOUT_FILENO);
 	}
 }

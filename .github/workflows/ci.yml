@@ -1,4 +1,4 @@
-name: CI
+name: C Project CI with Python Tests
 
 on:
   push:
@@ -7,28 +7,53 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
 
-      - name: Setup
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y valgrind
+          sudo apt-get install -y build-essential valgrind
           pip install norminette
 
-      - name: Norminette check
+      - name: Run Norminette check
+        run: norminette ./ || (echo "Norminette check failed. Please fix coding style issues." && exit 1)
+
+      - name: Build project with Make
+        run: make re
+
+      - name: Run e2e tests and performance checks
         run: |
-          norminette --version
-          norminette ./
+          chmod +x test/simple-test.sh && ./test/simple-test.sh
+          chmod +x test/performance-test.sh && ./test/performance-test.sh
+          python3 test/test_performance.py
+          python3 test/test_positive.py
 
-      - name: Build
-        run: make
-
-      - name: Run tests
+      - name: Run Valgrind memory check
         run: |
-          chmod +x test/simple-test.sh
-          ./test/simple-test.sh
+          echo -e "apple\nred\nbanana\nyellow\n\napple\nbanana\nnonexistent" > valgrind_input.txt
 
-      - name: Valgrind check
-        run: valgrind --leak-check=full ./hotrace || true
+          valgrind \
+            --leak-check=full \
+            --show-leak-kinds=all \
+            --track-origins=yes \
+            --log-file="valgrind-out.txt" \
+            ./hotrace < valgrind_input.txt
+
+          echo "--- Valgrind Output ---"
+          cat valgrind-out.txt
+          echo "-----------------------"
+
+          if ! grep -q "All heap blocks were freed -- no leaks are possible" valgrind-out.txt; then
+            echo "Valgrind detected memory leaks."
+            exit 1
+          fi
+          
+          echo "Valgrind check passed: No memory leaks detected."

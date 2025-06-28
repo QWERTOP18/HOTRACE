@@ -13,7 +13,7 @@
 NAME = hotrace
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -O3 # -fsanitize=address
 
 SRCS = main.c \
 	   get_next_line.c \
