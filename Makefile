@@ -1,57 +1,47 @@
-# VARIANT: v0 or v1 (default: v0)
-VARIANT ?= v0
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: knishiok <knishiok@student.42.jp>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/09/20 09:55:58 by knishiok          #+#    #+#              #
+#    Updated: 2025/06/28 14:57:17 by knishiok         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-ifeq ($(VARIANT),v1)
-VPATH = srcs/v1-map.c
-SRCS_VARIANT = $(shell find srcs/v1-map.c -name "*.c")
-INCS_VARIANT = $(shell find srcs/v1-map.c -name "*.h")
-else
-VPATH = srcs/v0-array
-SRCS_VARIANT = $(shell find srcs/v0-array -name "*.c")
-INCS_VARIANT = $(shell find srcs/v0-array -name "*.h")
-endif
-
-SRCS_COMMON = $(shell find srcs/parse -name "*.c") \
-	$(shell find srcs/_utils -name "*.c") \
-	srcs/main.c
-INCS_COMMON = $(shell find srcs/parse -name "*.h") \
-	$(shell find srcs/_utils -name "*.h") \
-	srcs/interface.h
-
-SRCS = $(SRCS_COMMON) $(SRCS_VARIANT)
-INCS = $(INCS_COMMON) $(INCS_VARIANT)
-
-CACHE = cache
-OBJS = $(patsubst %.c,$(CACHE)/%.o,$(SRCS))
-
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -Isrcs/_utils
 NAME = hotrace
 
-.PHONY: all clean fclean re run
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
-all: $(CACHE) $(NAME)
+SRCS = main.c \
+	   get_next_line.c \
+	   utils.c \
+	   AVLtree.c \
+	   AVL_utils.c \
+	   rotate.c 
 
+OBJS = $(SRCS:.c=.o)
+
+INC = -I .
+
+.PHONY: all
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS)
+	$(CC) $(CFLAGS) $(INC) -o $@ $(OBJS)
 
+%.o: %.c
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-$(CACHE):
-	mkdir -p $(CACHE)
-
-
-$(CACHE)/%.o: %.c $(INCS)
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
-
+.PHONY: clean
 clean:
-	$(RM) -r $(CACHE)
+	$(RM) $(OBJS)
 
+.PHONY: fclean
 fclean: clean
 	$(RM) $(NAME)
 
+.PHONY: re
 re: fclean all
-
-run: all
-	./$(NAME)
