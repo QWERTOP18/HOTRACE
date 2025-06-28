@@ -28,7 +28,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Isrcs/_utils
 NAME = hotrace
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re run debug
 
 all: $(CACHE) $(NAME)
 
@@ -55,3 +55,6 @@ re: fclean all
 
 run: all
 	./$(NAME)
+
+debug: CFLAGS += -g -DDEBUG
+debug: re

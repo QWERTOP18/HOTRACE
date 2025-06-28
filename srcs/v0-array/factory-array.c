@@ -6,7 +6,7 @@
 /*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 00:01:13 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 00:40:44 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/28 13:53:20 by yui              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,9 @@ void	*new_ctx(void)
 			{
 				free(ctx[i - 1][0]);
 				free(ctx[i - 1][1]);
-				free(ctx[i - 1]);
-				i--;
+				free(ctx[--i]);
 			}
-			free(ctx);
-			return (NULL);
+			return (free(ctx), NULL);
 		}
 		ctx[i][0] = NULL;
 		ctx[i][1] = NULL;
@@ -65,23 +63,4 @@ void	free_ctx(void *ctx)
 		i++;
 	}
 	free(array);
-}
-
-void	debug_log(void *ctx)
-{
-	char	***array;
-	int		i;
-
-	if (!ctx)
-		return ;
-	array = (char ***)ctx;
-	i = 0;
-	while (i < 1024 && array[i][0])
-	{
-		write(STDOUT_FILENO, array[i][0], ft_strlen(array[i][0]));
-		write(STDOUT_FILENO, ": ", 2);
-		write(STDOUT_FILENO, array[i][1], ft_strlen(array[i][1]));
-		write(STDOUT_FILENO, "\n", 1);
-		i++;
-	}
 }

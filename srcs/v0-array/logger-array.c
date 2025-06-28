@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   store-array.c                                      :+:      :+:    :+:   */
+/*   logger-array.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/28 00:01:21 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 13:41:47 by yui              ###   ########.fr       */
+/*   Created: 2025/06/28 13:27:31 by yui               #+#    #+#             */
+/*   Updated: 2025/06/28 13:52:06 by yui              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <utils.h>
 
-int	store(const char *key, const char *value, void *ctx)
-{
-	const char	***array = (const char ***)ctx;
-	static int	i = 0;
+#ifdef DEBUG
 
-	if (!key || !value || !ctx)
-		return (-1);
-	array[i][0] = ft_strdup(key);
-	if (!array[i][0])
-		return (-1);
-	array[i][1] = ft_strdup(value);
-	if (!array[i][1])
-		return (-1);
-	if (++i >= 1024)
-		return (-1);
-	return (0);
+void	debug_log(void *ctx)
+{
+	char	***array;
+	int		i;
+
+	if (!ctx)
+		return ;
+	array = (char ***)ctx;
+	i = 0;
+	while (i < 1024 && array[i][0])
+	{
+		write(STDOUT_FILENO, array[i][0], ft_strlen(array[i][0]));
+		write(STDOUT_FILENO, ": ", 2);
+		write(STDOUT_FILENO, array[i][1], ft_strlen(array[i][1]));
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
 }
+#else
+
+void	debug_log(void *ctx)
+{
+	(void)ctx;
+}
+#endif

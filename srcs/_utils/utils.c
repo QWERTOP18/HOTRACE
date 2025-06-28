@@ -6,7 +6,7 @@
 /*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 23:56:43 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 00:19:57 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/28 13:50:20 by yui              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,18 @@ char	*ft_strdup(const char *s)
 {
 	int		len;
 	char	*dup;
+	int		i;
 
 	len = ft_strlen(s);
 	dup = malloc(len + 1);
 	if (!dup)
 		return (NULL);
-	for (int i = 0; i < len; i++)
+	i = 0;
+	while (i < len)
+	{
 		dup[i] = s[i];
+		i++;
+	}
 	dup[len] = '\0';
 	return (dup);
 }
