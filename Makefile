@@ -1,5 +1,5 @@
-# VARIANT: v0 or v1 (default: v0)
-VARIANT ?= v0
+# VARIANT: v0 or v1 (default: v1)
+VARIANT ?= v1
 
 ifeq ($(VARIANT),v1)
 VPATH = srcs/v1-map.c
@@ -25,7 +25,7 @@ CACHE = cache
 OBJS = $(patsubst %.c,$(CACHE)/%.o,$(SRCS))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Isrcs/_utils
+CFLAGS = -Wall -Wextra -Werror -O3 -Isrcs/_utils
 NAME = hotrace
 
 .PHONY: all clean fclean re run debug

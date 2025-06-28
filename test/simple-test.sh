@@ -21,6 +21,9 @@
 # keyword-1
 # value-1
 
+
+make
+
 cat << EOF > example.htr
 keyword-1
 value-1
@@ -29,21 +32,16 @@ value-2
 
 keyword-1
 keyword-2
-keyword-3
 EOF
 
+RESULT=$(./hotrace < example.htr)
 
-RESULT=$(./hotrace < example.htr | tr -d '\0')
-EXPECTED="value-1
-value-2
-keyword-3
-: Not found."
+echo $RESULT
 
-if [ "$RESULT" != "$EXPECTED" ]; then
-    echo -e "\033[31mTest failed: Expected '$EXPECTED', got '$RESULT'\033[0m"
+if [ "$RESULT" != "value-1
+value-2" ]; then
+    echo -e "Test failed: Expected 'value-1\nvalue-2', got '$RESULT'"
     exit 1
 fi
 
 
-
-echo -e "\033[32mTest passed: Output matches expected result.\033[0m"

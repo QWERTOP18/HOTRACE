@@ -1,18 +1,18 @@
-
 #!/bin/bash
 
+if command -v gdate >/dev/null 2>&1; then
+    # macOS + coreutils（brew install coreutils）
+    DATE_CMD="gdate"
+else
+    # Linux (GNU date)
+    DATE_CMD="date"
+fi
 
+start_time=$($DATE_CMD +%s%3N)
+./hotrace < test/perf_example.seed | tr -d '\0' > test/perf_example.out.tmp
+end_time=$($DATE_CMD +%s%3N)
+elapsed=$((end_time - start_time))
+echo "Execution time: ${elapsed} ms"
 
+diff test/perf_example.out.tmp test/perf_example.result
 
-
-
-
-echo "Measuring execution time..."
-START_TIME=$(date +%s.%N)
-./hotrace < perf_example.htr | tr -d '\0' > test/perf_example.out.tmp
-END_TIME=$(date +%s.%N)
-ELAPSED=$(echo "$END_TIME - $START_TIME" | bc)
-echo "Execution time: $ELAPSED seconds"
-
-diff test/perf_example.out.tmp test/perf_example.out.tmp
-rm test/perf_example.out.tmp

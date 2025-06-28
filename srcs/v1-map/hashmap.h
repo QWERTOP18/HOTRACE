@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 14:27:25 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/06/28 18:51:24 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/06/28 20:04:13 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "utils.h"
 
-# define MAP_SIZE 100000
+# define MAP_SIZE 1000000
 
 typedef struct s_map_entry
 {

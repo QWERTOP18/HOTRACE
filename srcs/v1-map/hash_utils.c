@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 19:13:50 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/06/28 19:14:52 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/06/28 19:51:27 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@
 unsigned int	hash_func(const char *key)
 {
 	unsigned int	hash;
-	int				c;
+	int				l;
 
+	l = 0;
 	hash = 5381;
-	while (1)
+	while (key[l])
 	{
-		c = *key++;
-		if (!c)
-			break ;
-		hash = ((hash << 5) + hash) + c;
+		hash = ((hash << 5) + hash) + key[l];
+		l++;
 	}
 	return (hash % MAP_SIZE);
 }
@@ -45,14 +44,14 @@ t_map_entry	*create_entry(const char *key, const char *value)
 
 void	free_entry_list(t_map_entry *entry)
 {
-	t_map_entry	*tmp;
+	t_map_entry	*next_entry;
 
 	while (entry)
 	{
-		tmp = entry;
-		entry = entry->next;
-		free(tmp->key);
-		free(tmp->value);
-		free(tmp);
+		next_entry = entry->next;
+		free(entry->key);
+		free(entry->value);
+		free(entry);
+		entry = next_entry;
 	}
 }
