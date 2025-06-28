@@ -6,7 +6,7 @@
 /*   By: knishiok <knishiok@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:42:50 by knishiok          #+#    #+#             */
-/*   Updated: 2025/06/28 15:54:46 by knishiok         ###   ########.fr       */
+/*   Updated: 2025/06/28 17:01:24 by knishiok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_AVLNode	*handle_right_imbalance(t_AVLNode *node)
 	return (left_rotate(node));
 }
 
-static t_AVLNode	*balanceing_tree(t_AVLNode *node)
+static t_AVLNode	*balancing_tree(t_AVLNode *node)
 {
 	int	balance;
 
@@ -57,5 +57,5 @@ t_AVLNode	*insert(t_AVLNode *node, const char *key, const char *value)
 	else
 		return (node);
 	node->height = 1 + ft_max(get_height(node->left), get_height(node->right));
-	return (balanceing_tree(node));
+	return (balancing_tree(node));
 }
