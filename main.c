@@ -84,7 +84,6 @@ int	main(void)
 
 	root = NULL;
 	struct_tree(&root);
-	inorder_traversal(root);
 	while (1)
 	{
 		key = get_next_line(STDIN_FILENO);

@@ -6,7 +6,7 @@
 #    By: knishiok <knishiok@student.42.jp>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 09:55:58 by knishiok          #+#    #+#              #
-#    Updated: 2025/06/28 14:57:17 by knishiok         ###   ########.fr        #
+#    Updated: 2025/06/28 15:56:13 by knishiok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = main.c \
 	   get_next_line.c \
 	   utils.c \
 	   AVLtree.c \
+	   insert.c \
 	   AVL_utils.c \
 	   rotate.c 
 

@@ -6,7 +6,7 @@
 /*   By: knishiok <knishiok@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:42:50 by knishiok          #+#    #+#             */
-/*   Updated: 2025/06/28 15:43:50 by knishiok         ###   ########.fr       */
+/*   Updated: 2025/06/28 15:54:46 by knishiok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,21 @@ static t_AVLNode	*balanceing_tree(t_AVLNode *node)
 	if (balance < -1)
 		return (handle_right_imbalance(node));
 	return (node);
+}
+
+t_AVLNode	*insert(t_AVLNode *node, const char *key, const char *value)
+{
+	int	cmp;
+
+	if (!node)
+		return (create_node(key, value));
+	cmp = ft_strcmp(key, node->key);
+	if (cmp < 0)
+		node->left = insert(node->left, key, value);
+	else if (cmp > 0)
+		node->right = insert(node->right, key, value);
+	else
+		return (node);
+	node->height = 1 + ft_max(get_height(node->left), get_height(node->right));
+	return (balanceing_tree(node));
 }
