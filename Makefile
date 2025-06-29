@@ -6,7 +6,7 @@
 #    By: yui <yui@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 09:55:58 by knishiok          #+#    #+#              #
-#    Updated: 2025/06/29 16:10:02 by yui              ###   ########.fr        #
+#    Updated: 2025/06/29 16:48:21 by yui              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,3 +75,6 @@ run: all
 
 debug: CFLAGS += -g -DDEBUG
 debug: re
+
+test: all
+	python3 test/test_performance-v2.py
