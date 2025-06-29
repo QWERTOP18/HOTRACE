@@ -6,7 +6,7 @@
 /*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 23:02:15 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 11:53:55 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/29 14:15:32 by yui              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		store(const char *key, const char *value, void *ctx);
 */
 int		search(const char *key, void *ctx);
 
-/**
+/*
 ** Debug function to log the current state of the context.
 */
 void	debug_log(void *ctx);

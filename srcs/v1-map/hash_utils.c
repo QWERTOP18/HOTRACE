@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 19:13:50 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/06/28 19:51:27 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/06/29 14:24:42 by yui              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ unsigned int	hash_func(const char *key)
 	int				l;
 
 	l = 0;
-	hash = 5381;
+	hash = HASH_ZERO;
 	while (key[l])
 	{
 		hash = ((hash << 5) + hash) + key[l];
@@ -37,7 +37,11 @@ t_map_entry	*create_entry(const char *key, const char *value)
 	if (!entry)
 		return (NULL);
 	entry->key = ft_strdup(key);
+	if (!entry->key)
+		return (NULL);
 	entry->value = ft_strdup(value);
+	if (!entry->value)
+		return (free(entry->key), NULL);
 	entry->next = NULL;
 	return (entry);
 }
