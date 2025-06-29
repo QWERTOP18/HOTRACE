@@ -79,7 +79,7 @@ def run_test(test_name, input_data, expected_output, timeout=5):
         return False
 
 # 1. Normal Case: Random key-value pairs
-def test_random_cases(num_tests=1, num_pairs=1):
+def test_random_cases(num_tests=100, num_pairs=1000):
     print_header("Test 1: Normal Cases (Random Data)")
     passed_count = 0
     for i in range(num_tests):

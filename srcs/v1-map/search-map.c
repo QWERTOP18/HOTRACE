@@ -6,7 +6,7 @@
 /*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 00:00:03 by yui               #+#    #+#             */
-/*   Updated: 2025/06/29 14:53:12 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/29 15:27:18 by yui              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	search(const char *key, void *ctx)
 	}
 	if (write(STDOUT_FILENO, key, ft_strlen(key) - 1) < 0)
 		return (-1);
-	if (write(STDOUT_FILENO, ": Not found.\n", 14) < 0)
+	if (write(STDOUT_FILENO, ": Not found.\n", 13) < 0)
 		return (-1);
 	return (0);
 }
