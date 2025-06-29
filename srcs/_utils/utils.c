@@ -6,11 +6,13 @@
 /*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 23:56:43 by yui               #+#    #+#             */
-/*   Updated: 2025/06/29 15:44:27 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/29 20:57:18 by yui              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#ifndef ASM
+
+# include "utils.h"
 
 int	ft_strlen(const char *s)
 {
@@ -65,3 +67,5 @@ int	ft_strchr(const char *s, int c)
 	}
 	return (0);
 }
+
+#endif

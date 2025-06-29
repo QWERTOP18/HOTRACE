@@ -18,12 +18,12 @@ HOTRACEは、キー・バリューペアを格納し、検索するためのシ�
 ### 基本的な使用方法
 
 ```bash
-./hotrace < input_file
+./hotrace
 ```
 
 ### 入力形式
 
-入力ファイルは以下の形式で記述します：
+入力は以下の形式で記述します：
 
 ```
 keyword-1
@@ -66,8 +66,15 @@ make VARIANT=v0  # 配列実装
 make VARIANT=v1  # マップ実装
 make VARIANT=v2  # AVL木実装
 
+
 # デバッグビルド
 make debug
+
+# SIMDで最適化
+make asm
+
+# テスト
+make test
 
 # クリーンアップ
 make clean
@@ -81,6 +88,20 @@ make fclean
 - **v0-array**: 配列ベースの実装
 - **v1-map**: マップベースの実装
 - **v2-avl**: AVL木ベースの実装
+
+![benchmark](./.assets/benchmark.png)
+
+## **asm**命令を使った最適化例
+
+C言語の関数内でインラインアセンブリ（**asm**）を使うことで、特定の処理をSIMD命令などで高速化できます。
+
+```c
+void simd_example() {
+    int a = 1, b = 2, c;
+    __asm__("addl %%ebx, %%eax" : "=a"(c) : "a"(a), "b"(b));
+    // c = a + b (x86アセンブリ例)
+}
+```
 
 ## テスト
 
