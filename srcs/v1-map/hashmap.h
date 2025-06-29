@@ -6,7 +6,7 @@
 /*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 14:27:25 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/06/29 14:24:34 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/29 17:19:47 by yui              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "utils.h"
 
-# define MAP_SIZE 1000000
+# define MAP_SIZE 100000000
 # define HASH_ZERO 5381
 
 typedef struct s_map_entry
