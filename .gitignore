@@ -9,5 +9,6 @@
 *.pdf
 
 
+*.htr
 hotrace
 *cache*
