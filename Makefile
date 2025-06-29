@@ -78,3 +78,6 @@ debug: re
 
 asm: CFLAGS += -DASM
 asm: re
+
+test: all
+	python3 test/test_performance-v2.py
