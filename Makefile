@@ -1,14 +1,31 @@
-# VARIANT: v0 or v1 (default: v1)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yui <yui@student.42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/09/20 09:55:58 by knishiok          #+#    #+#              #
+#    Updated: 2025/06/29 16:10:02 by yui              ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 VARIANT ?= v1
 
 ifeq ($(VARIANT),v1)
 VPATH = srcs/v1-map.c
 SRCS_VARIANT = $(shell find srcs/v1-map -name "*.c")
 INCS_VARIANT = $(shell find srcs/v1-map -name "*.h")
-else
+else ifeq ($(VARIANT),v2)
+VPATH = srcs/v2-avl
+SRCS_VARIANT = $(shell find srcs/v2-avl -name "*.c")
+INCS_VARIANT = $(shell find srcs/v2-avl -name "*.h")
+else ifeq ($(VARIANT),v0)
 VPATH = srcs/v0-array
 SRCS_VARIANT = $(shell find srcs/v0-array -name "*.c")
 INCS_VARIANT = $(shell find srcs/v0-array -name "*.h")
+else
+$(error Invalid VARIANT specified. Use 'v1' or 'v2'.)
 endif
 
 SRCS_COMMON = $(shell find srcs/parse -name "*.c") \

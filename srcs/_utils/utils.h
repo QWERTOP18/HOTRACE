@@ -6,7 +6,7 @@
 /*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 23:53:45 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 00:19:49 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/29 15:44:04 by yui              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 int		ft_strlen(const char *s);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s);
+void	ft_putstr_fd(const char *s, int fd);
 
 #endif
