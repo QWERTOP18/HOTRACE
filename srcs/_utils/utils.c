@@ -6,7 +6,7 @@
 /*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 23:56:43 by yui               #+#    #+#             */
-/*   Updated: 2025/06/28 13:50:20 by yui              ###   ########.fr       */
+/*   Updated: 2025/06/29 15:44:27 by yui              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,36 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *src)
 {
-	int		len;
-	char	*dup;
 	int		i;
+	char	*new_str;
 
-	len = ft_strlen(s);
-	dup = malloc(len + 1);
-	if (!dup)
-		return (NULL);
-	i = 0;
-	while (i < len)
+	new_str = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (new_str)
 	{
-		dup[i] = s[i];
-		i++;
+		i = 0;
+		while (*src)
+			new_str[i++] = *src++;
+		new_str[i] = '\0';
 	}
-	dup[len] = '\0';
-	return (dup);
+	return (new_str);
+}
+
+void	ft_strcpy(char *dest, const char *src)
+{
+	while (*src)
+		*dest++ = *src++;
+	*dest = '\0';
+}
+
+int	ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return (1);
+		s++;
+	}
+	return (0);
 }
