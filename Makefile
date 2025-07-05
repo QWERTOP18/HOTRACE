@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yui <yui@student.42.fr>                    +#+  +:+       +#+         #
+#    By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 09:55:58 by knishiok          #+#    #+#              #
-#    Updated: 2025/06/29 21:00:11 by yui              ###   ########.fr        #
+#    Updated: 2025/07/05 13:27:16 by ymizukam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -O3 -Isrcs/_utils
 NAME = hotrace
 
-.PHONY: all clean fclean re run debug
+.PHONY: all clean fclean re run debug asm test
 
 all: $(CACHE) $(NAME)
 
