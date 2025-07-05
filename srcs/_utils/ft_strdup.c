@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yui <yui@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 23:56:43 by yui               #+#    #+#             */
-/*   Updated: 2025/06/29 20:56:55 by yui              ###   ########.fr       */
+/*   Updated: 2025/07/05 13:21:34 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,23 @@ static void	ft_memcpy(void *dest, const void *src, size_t n)
 		return ;
 	}
 	__asm__("1:\n\t"
-			"vmovdqu     (%[src]), %%ymm0\n\t"
-			"vmovdqu     %%ymm0, (%[dest])\n\t"
-			"add         $32, %[src]\n\t"
-			"add         $32, %[dest]\n\t"
-			"sub         $32, %[count]\n\t"
-			"cmp         $32, %[count]\n\t"
-			"jge         1b\n\t"
-			"2:\n\t"
-			"cmp         $0, %[count]\n\t"
-			"je          3f\n\t"
-			"movsb\n\t"
-			"sub         $1, %[count]\n\t"
-			"jmp         2b\n\t"
-			"3:\n\t"
-			: [dest] "+D"(dest), [src] "+S"(src), [count] "+c"(n)
-			:
-			: "ymm0", "cc", "memory");
+		"vmovdqu     (%[src]), %%ymm0\n\t"
+		"vmovdqu     %%ymm0, (%[dest])\n\t"
+		"add         $32, %[src]\n\t"
+		"add         $32, %[dest]\n\t"
+		"sub         $32, %[count]\n\t"
+		"cmp         $32, %[count]\n\t"
+		"jge         1b\n\t"
+		"2:\n\t"
+		"cmp         $0, %[count]\n\t"
+		"je          3f\n\t"
+		"movsb\n\t"
+		"sub         $1, %[count]\n\t"
+		"jmp         2b\n\t"
+		"3:\n\t"
+		: [dest] "+D"(dest), [src] "+S"(src), [count] "+c"(n)
+		:
+		: "ymm0", "cc", "memory");
 }
 
 char	*ft_strdup(const char *s)
